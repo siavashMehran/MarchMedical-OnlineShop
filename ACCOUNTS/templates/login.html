@@ -1,0 +1,62 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>ورود | فروشگاه کارزیبا</title>
+    {%include 'shit/css-links.html'%}
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->       
+	{%include 'shit/apple-touch.html'%}  </head><!--/head-->
+
+<body>
+	<header id="header"><!--header-->
+		{%include 'shit/site-header.html'%}
+	</header><!--/header-->
+	
+	<div class="container">
+		<section id="form"><!--form-->
+			<div class="row">
+
+					<div class="login-form w-50 mg-0-auto"><!--login form-->
+						<h2>ورود به حساب کاربـری :</h2>
+						<form method="POST">
+							{% csrf_token %}
+
+							{{form.username.label}}
+							{{form.username}}
+							{% for error in form.username.errors %}
+							<p class="err">{{error}}</p>
+							{% endfor %}
+							
+							
+							{{form.password.label}}
+							{{form.password}}
+							{% for error in form.password.errors %}
+							<p class="err">{{error}}</p>
+							{% endfor %}
+								
+							<button type="submit" class="btn btn-default">ورود</button>
+						</form>
+					</div><!--/login form-->
+				
+			
+				
+			</div>
+		</section>
+	</div>
+	<!--/form-->
+	
+	
+	{%include 'shit/footer.html'%}
+	
+
+  
+    {%include 'shit/footer-scripts.html'%}
+</body>
+</html>

@@ -1,0 +1,328 @@
+{% load static %}
+{% load render_partial %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{{product.caption}}">
+    <meta name="author" content="">
+    <title> {{product.title}}  </title>
+	{%include 'shit/css-links.html'%}
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->       
+    {%include 'shit/apple-touch.html'%}
+	 
+</head><!--/head-->
+
+<body>
+	<header id="header"><!--header-->
+		{%include 'shit/site-header.html'%}
+	</header><!--/header-->
+	
+	<section>
+		<div class="container">
+			<div class="row">
+				
+				<div class="col-sm-9 padding-right">
+
+					<div class="product-details"><!--product-details-->
+						<div class="col-sm-5">
+						
+							<div class="view-product">
+								<img src=" {{product.pic.url}} " alt="{{product.title}}" />
+								<h3><a class="link_cleaner" href="{{product.pic.url}}"> بزرگنمایـی </a></h3>
+							</div>
+							
+							<div id="similar-product" class="carousel slide" data-ride="carousel">
+
+								 	<!-- for three lil pics under -->
+									 <!-- Wrapper for slides -->
+									 
+								    <div class="carousel-inner">
+										
+										{%for gallery_chunks in gallery_sliced%}
+										
+										<div class="item textcenter {% if forloop.counter == 1 %} active{%endif%}">
+
+										  	{% for pic in gallery_chunks %}
+												<a href="{{ pic.pic.url }}"><img class="galleryitem" src="{{ pic.pic.url }}" alt=""></a>										
+											{%endfor%}
+										</div>
+										
+										{%endfor%}
+									</div>
+								{%if not gallery_is_none %}
+
+								  <!-- Controls -->
+								<a class="right item-control" href="#similar-product" data-slide="next">
+									<i class="fa fa-angle-right"></i>
+								</a>
+								<a class="left item-control" href="#similar-product" data-slide="prev">
+									<i class="fa fa-angle-left"></i>
+								</a>
+
+								{%endif%}
+								
+							</div>
+							
+						</div>
+						<div class="col-sm-7">
+							<div class="product-information"><!--/product-information-->
+								<img src="{% static 'images/product-details/new.png' %}" class="newarrival" alt="new product\محصول جدید" />
+								<div class="timestamp">
+									<p>  {{product.timestamp | time:"i \: H " }} </p>
+									<p dir="ltr">  {{product.timestamp | date:"Y \:  m \:  d" }} </p>
+								</div>
+								<div>
+									<h2> {{product.title}} </h2>
+									<p> {{product.description | linebreaksbr}} </p>
+									
+								</div>
+								<div>
+									<span>
+										<span>قیمت : {{product.price}} ريال</span>
+									</span>
+									<span>
+										<form action="" method="POST">
+											{% csrf_token %}
+											<label>تعداد :</label>
+											{{form.order_count}}
+											{{form.product_id}}
+											{{form.product_price}}
+											<button type="submit" class="btn btn-fefault cart">
+												<i class="fa fa-shopping-cart"></i>
+												افـزودن به سبـد خریـد
+											</button>
+										</form>
+									</span>
+								</div>
+								<div>
+									<p><b> موجـودی : </b>  در انبـار موجود می باشد </p>
+									<p>
+										<b> 
+											دسته : 
+										</b>
+										
+										{% for cat in categories %} 
+											<a href="{{cat.getCatAbsouluteUrl}}"> <span class="mycategories">{{cat}} </span>
+										{%endfor%}
+										
+									</p>
+									{% if product.brand %}<p><b> برنـد : </b> {{product.brand}} </p>{% endif %}
+								</div>
+								<span  class="socials-share share">
+									<ul>
+										<a href="#">
+											<li>
+												<label>بلـه</label>
+												<img src="{% static 'images/product-details/Bale.png' %}"/>
+											</li>
+										</a>
+										<a href="#">
+											<li>
+												<label>سـروش</label>
+												<img src="{% static 'images/product-details/Soroush.png' %}"/>
+											</li>
+										</a>
+										<a href="#">
+											<li>
+												<label>اینستاگرام</label>
+												<img src="{% static 'images/product-details/Instagram.png' %}"/>
+											</li>
+										</a>
+										<li><img src="images/product-details/rating.png" alt="" /></li>
+									</ul>
+								</span>
+								
+							</div><!--/product-information-->
+						</div>
+					</div><!--/product-details-->
+					
+					<div class="category-tab shop-details-tab"><!--category-tab-->
+						<div class="col-sm-12">
+							<ul class="nav nav-tabs">
+								<li><a href="#details" data-toggle="tab"><i class="fa fa-th-list"></i> جزئیات</a></li>
+								<li><a href="#companyprofile" data-toggle="tab"><i class="fa fa-chevron-down"></i> درباره سازنده</a></li>
+								<li><a href="#tag" data-toggle="tab"><i class="fa fa-tags"></i> برچسب</a></li>
+								<li class="active"><a href="#reviews" data-toggle="tab"><i class="fa fa-comments"></i> نظرات ({{comments.count}})</a></li>
+							</ul>
+						</div>
+
+						<div class="tab-content">
+							<div class="tab-pane fade" id="details" >
+
+								<div class="col-sm-3">
+									<div class="product-image-wrapper">
+										<div class="single-products">
+											<div class="productinfo text-center">
+												<img src="images/home/gallery.jpg" alt="" />
+												<h2>1.250.000 ريال</h2>
+												<p>توضیحات کوتاه محصول</p>
+												<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>افزودن به سبـد خریـد</button>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+							
+							<div class="tab-pane fade" id="companyprofile" >
+								<div class="col-sm-3">
+									<div class="product-image-wrapper">
+										<div class="single-products">
+											<div class="productinfo text-center">
+												<img src="images/home/gallery.jpg" alt="" />
+												<h2>1.250.000 ريال</h2>
+												<p>توضیحات کوتاه محصول</p>
+												<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>افزودن به سبـد خریـد</button>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+							
+							<div class="tab-pane fade" id="tag" >
+								
+									<p>
+										{%for tag in tags%}
+											<a href="{{tag.getTagAbsouluteUrl}}">#{{tag}}</a>
+										{%endfor%}
+									</p>
+							</div>
+							
+							<div class="tab-pane fade active in" id="reviews" >
+								<div class="col-sm-12">
+
+
+									{%if comments.count == 0%}
+										<div class="nocomment">
+											<p class="orange"><i class="fa fa-comments orange"></i> برای این پست هنوز نظری ثبت نشده</p>
+										</div>
+									{%endif%}
+
+
+									{% for comment in comments %}
+										<div class="single-comment">
+											
+											<ul>
+												<li><a class="fontlower"><i class="fa fa-user"></i> {{comment.user}} </a></li>
+												<li class="dirl"><a class="fontlower"><i class="fa fa-clock-o"></i> {{comment.timeStamp | timesince}} ago</a></li>
+												<li><a class="fontlower dirl"><i class="fa fa-calendar-o"></i> {{comment.timeStamp | date:"Y \/  m \/  d" }} </a></li>
+												<li><a class="like-btn" id="like-btn-{{comment.id}}"><button class="mybtn"><i class="fa fa-thumbs-o-up"><span class="likes"> {%if comment.likes != none %}{{comment.likes}} {%endif%} </span> </i> </button></a></li>
+												{%csrf_token%}
+											</ul>
+											<p>{{comment.comment_text}}</p>
+										</div><br><hr><br>
+									{%endfor%}
+									
+									<br><br>
+
+									{% if request.user.is_authenticated%}
+										<p><b>نظـر خود را بنویسیـد</b></p>
+										<form action="#" method="POST">
+											{%csrf_token%}
+											<span>
+												{{commentform.user}}
+												{{commentform.user_email}}
+											</span>
+											{{commentform.comment_text}}
+											<button type="submit" class="btn btn-default pull-left">ارسـال</button>
+											{{commentform.product}}
+										</form>
+										{%else%}
+
+											<div class="logintocomment">
+
+												<p>
+													برای ثبت نظر باید وارد حساب خود شوید
+													<br>
+													<a href="/login">login</a>
+												</p>
+
+												
+
+											</div>
+										
+
+									{%endif%}
+								</div>
+							</div>
+							
+						</div>
+					</div><!--/category-tab-->
+					
+					<div class="recommended_items"><!--recommended_items-->
+						<h2 class="title text-center">محصولات پیشنهادی</h2>
+						
+						<div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+
+							<div class="carousel-inner">
+
+								<div class="item active">
+
+									<div class="col-sm-4">
+										<div class="product-image-wrapper">
+											<div class="single-products">
+												<div class="productinfo text-center">
+													<img src="images/home/recommend1.jpg" alt="" />
+													<h2>1.250.000 ريال</h2>
+													<p>توضیحات کوتاه محصول</p>
+													<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>افزودن به سبـد خریـد</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="item">	
+									<div class="col-sm-4">
+										<div class="product-image-wrapper">
+											<div class="single-products">
+												<div class="productinfo text-center">
+													<img src="images/home/recommend1.jpg" alt="" />
+													<h2>1.250.000 ريال</h2>
+													<p>توضیحات کوتاه محصول</p>
+													<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>افزودن به سبـد خریـد</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+
+
+							 <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
+								<i class="fa fa-angle-left"></i>
+							  </a>
+							  <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
+								<i class="fa fa-angle-right"></i>
+							  </a>			
+						</div>
+					</div><!--/recommended_items-->
+					
+				</div>
+				
+				<div class="col-sm-3">
+					{% render_partial 'sidebar' %}
+				</div>
+				
+			</div>
+		</div>
+	</section>
+	
+	{% comment %} mainfooter {% endcomment %}
+	{%include 'shit/footer.html' with g=gooz%}
+	
+	
+
+ 	
+	{%include 'shit/footer-scripts.html'%}
+	<script src="{% static 'js/comments.js' %}"></script>
+
+</body>
+</html>

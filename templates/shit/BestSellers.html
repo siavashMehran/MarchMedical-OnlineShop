@@ -1,0 +1,28 @@
+{%load static%}
+<div class="recommended_items"><!--NewProduct_items-->
+    <h2 class="title text-center">پر فروش ترین محصولات</h2>
+    
+    <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+
+        <div class="carousel-inner">
+
+
+            <div class="item active">	
+                {%for product in products%}
+
+                    {%include 'shit/minimal_cards.html' with product=product %}
+
+                {%endfor%}
+
+                
+
+
+            </div>
+
+
+
+
+        </div>
+		
+    </div>
+</div><!--/NewProduct_items-->

@@ -1,0 +1,36 @@
+{% load static %}
+
+<div class="col-sm-4">
+
+							<div class="product-image-wrapper">
+								<div class="single-products">
+
+									<div class="productinfo text-center">
+										<img src="{{product.pic.url}}" alt="{{product.description}}">	
+
+									</div>
+
+									<div class="product-overlay">
+
+										<div class="overlay-content">
+																				
+										{% if product.brand%} <h2><a><span>{{product.brand}}</span> <i class="fa fa-usd green font20"></i></a></h2> {%endif%}
+										
+										<p> {{product.caption}} </p>
+										<a href="{{product.getAbsoluteUrl}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>جزییات محصول</a>
+										</div>
+
+									</div>
+
+								</div>
+
+								<div class="choose">
+									<ul class="nav nav-pills nav-justified">
+										<li><a><span class="font12">{{product.title}}</span ></a></li>
+
+										<li><a><span>{{product.price}}</span> <i class="fa fa-usd green font20"></i></a></li>
+									</ul>
+								</div>
+
+							</div>
+						</div>

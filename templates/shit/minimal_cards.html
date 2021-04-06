@@ -1,0 +1,20 @@
+
+{% load static %}
+
+<div class="col-sm-3">
+    <div class="product-image-wrapper">
+        <div class="single-products">
+                <div class="productinfo text-center">
+                    <img src="{{product.pic.url}}" alt="{{product.caption}}" />
+                    </div>
+                <div class="product-overlay">
+                    <div class="overlay-content">
+                        <h2>{{product.title}}</h2>
+                        <p>{{product.price}}</p>
+                        <a href="{{product.getAbsoluteUrl}}" class="btn btn-default add-to-cart"><i class="font30 fa fa-shopping-cart"></i></a>
+                    </div>
+                </div>
+        </div>
+        
+    </div>
+</div>

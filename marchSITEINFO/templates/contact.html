@@ -1,0 +1,123 @@
+
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>صفحه اصلی | فروشگاه کارزیبا</title>
+	{%include 'shit/css-links.html'%}
+    <!--[if lt IE 9]>
+    <script src="{% static 'js/html5shiv.js' %}"></script>
+    <script src="{% static 'js/respond.min.js' %}"></script>
+	<![endif]-->  
+	{%include 'shit/apple-touch.html'%}     
+</head><!--/head-->
+
+<body>
+	<header id="header"><!--header-->
+		{%include 'shit/site-header.html'%}
+	</header><!--/header-->
+
+
+
+		<div id="contact-page" class="container">
+			<div class="bg">
+				<div class="row">
+					<div class="container">
+						<div class="col-sm-12" style="overflow: hidden; margin-bottom: 40px">    			   			
+							<h2 class="title text-center">تمـاس با مـا</h2>    			    						<div id="gmap" class="contact-map">
+									<img src="images/home/Map.jpg" alt="Map"/>
+								</div>
+						</div>
+					</div>
+					</div>    	
+				<div class="row">  	
+					<div class="col-sm-8">
+						<div class="contact-form">
+							<h2 class="title text-center">با ما در ارتباط باشیـد</h2>
+							<div class="status alert alert-success" style="display: none"></div>
+							<form id="main-contact-form" class="contact-form row" name="contact-form" method="POST">
+								{% csrf_token %}
+								<div class="form-group col-md-6">
+									{{form.sender}}
+									{{form.sender.errors}}
+								</div>
+								<div class="form-group col-md-6">
+									{{form.email}}
+									{{form.email.errors}}
+								</div>
+								<div class="form-group col-md-12">
+									{{form.title}}
+									{%for error in form.title.errors%}
+										<p>{{error}}</p>
+									{%endfor%}
+								</div>
+								<div class="form-group col-md-12">
+									{{form.message}}
+									{%for error in form.message.errors%}
+										<p>{{error}}</p>
+									{%endfor%}
+								</div>                        
+								<div class="form-group col-md-12">
+									<input type="submit" name="submit" class="btn btn-primary pull-right" value="ارسـال">
+								</div>
+							</form>
+							
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="contact-info">
+							<h2 class="title text-center">اطلاعات تماس</h2>
+							<address>
+								<br>
+								<h2> {{info.companyName}} </h2>
+								<br>
+								<p> {{info.adress}} </p>
+								<br>
+								<p dir="auto"> {{info.phone}} </p>
+								<p> {{info.email}} </p>
+								<p> {{info.}} </p>
+								<p> {{info.}} </p>
+								
+							</address>
+							<div class="social-networks">
+								<h2 class="title text-center">شبکـه های اجتـماعی</h2>
+								<span  class="socials-share share">
+										<ul>
+											<a href="#">
+												<li>
+													<label>بلـه</label>
+													<img src="images/product-details/Bale.png"/>
+												</li>
+											</a>
+											<a href="#">
+												<li>
+													<label>سـروش</label>
+													<img src="images/product-details/Soroush.png"/>
+												</li>
+											</a>
+											<a href="#">
+												<li>
+													<label>اینستاگرام</label>
+													<img src="images/product-details/Instagram.png"/>
+												</li>
+											</a>
+										</ul>
+									</span>
+							</div>
+						</div>
+					</div>    			
+				</div>  
+			</div>	
+		</div><!--/#contact-page-->
+
+		{%include 'shit/footer.html' with g=gooz%}
+	
+
+  
+		{%include 'shit/footer-scripts.html'%}
+</body>
+</html>

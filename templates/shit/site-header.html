@@ -1,0 +1,107 @@
+{%load static%}
+
+
+<div class="header-middle"><!--header-middle-->
+
+    <div class="container">
+
+        <div class="row">
+
+
+            
+            
+            <div class="col-sm-4" style="text-align: left;">
+                <div class="logo">
+                    <a href="/"><img src="{% static 'images/home/logo.png' %}" alt="Logo" style="text-align: center;" /></a>
+                </div>
+            </div>
+            
+            {%if request.user.is_authenticated%}
+                <div class="col-sm-8 header-middle-menu">
+
+                    <div class="shop-menu pull-right">
+                    
+                        <ul class="nav navbar-nav">
+                            <li><a href="#"><i class="fa fa-user"></i> سلام {{request.user}} </a></li>
+                            <li><a href="/logout"><i class="fa fa-sign-out"></i>  خروج</a></li>
+                            <li><a href="#"><i class="fa fa-star"></i> لیست علاقه مندی ها</a></li>
+                            
+                            <li><a href="/cart"><i class="fa fa-shopping-cart"></i> سبد خریـد</a></li>
+
+                            
+                            
+                        </ul>
+                        
+                    </div>
+                    
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div><!--/header-middle-->
+
+<div class="header-bottom"><!--header-bottom-->
+
+    <div class="container">
+
+        <div class="row">
+            
+            <div class="col-sm-3">
+                <div class="search_box pull-left">
+                    <form action="/shop/search" method="GET" >
+                        <input type="text" placeholder="جستـجو" value="{{request.GET.q}}" name="q"/>
+                        <button class="btn btn-default my-btn" type="submit">برو</button>
+                    </form>
+                </div>
+            </div>
+            
+
+            <div class="col-sm-9">
+
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+
+                <div class="mainmenu pull-right">
+
+                    <ul class="nav navbar-nav collapse navbar-collapse">
+
+                        <li><a {%if request.path == '/'%} class='active' {%endif%} href="/">خـانه</a></li>
+
+                        <li class="dropdown"><a {%if request.path == '/shop/' %} class='active'{%endif%} href="/shop">فروشگـاه<i class="fa fa-angle-down"></i></a>
+                            <ul role="menu" class="sub-menu">
+                                <li><a {%if request.path == '/shop/'%} class='active' {%endif%} href="/shop">محصولات</a></li>
+                                <li><a href="product-details.html">جزئیات محصولات</a></li> 
+                                <li><a href="checkout.html">پرداخت</a></li> 
+                                <li {%if request.path == '/cart'%} class='active' {%endif%}><a href="/cart"> سبـد خریـد </a></li> 
+                            </ul>
+                        </li> 
+                        
+
+
+                        <li class="dropdown"><a href="#">اخبـار<i class="fa fa-angle-down"></i></a>
+                            <ul role="menu" class="sub-menu">
+                                <li><a href="blog.html">آخریـن اخبـار</a></li>
+                                <li><a href="blog-single.html">صفحـه خبـر</a></li>
+                            </ul>
+                        </li> 
+
+
+                        <li><a {%if request.path == '/about-us'   %} class='active' {%endif%} href="/about-us">درباره مـا</a></li>
+                        <li><a {%if request.path == '/contact-us' %} class='active' {%endif%} href="/contact-us">تماس با مـا</a></li>
+                        <li><a href="/login" {%if request.path == '/login'%} class='active'{%endif%} > ورود</a></li>
+                        <li><a href="/register" {%if request.path == '/register'%} class='active'{%endif%} > ثبت نام</a></li>
+                            
+                    </ul>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div><!--/header-bottom-->
+

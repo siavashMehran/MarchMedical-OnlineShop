@@ -1,0 +1,62 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>صفحه اصلی | فروشگاه کارزیبا</title>
+	{%include 'shit/css-links.html'%}
+    <!--[if lt IE 9]>
+    <script src="{% static 'js/html5shiv.js' %}"></script>
+    <script src="{% static 'js/respond.min.js' %}"></script>
+	<![endif]-->  
+	{%include 'shit/apple-touch.html'%}     
+</head><!--/head-->
+
+<body>
+	<header id="header"><!--header-->
+		{%include 'shit/site-header.html'%}
+	</header><!--/header-->
+	
+	
+	
+	<section>
+		<div class="container">
+			<div class="row">
+
+				{%include 'shit/BestSellers.html' with products=mostViewd%}
+				
+				
+				<div class="col-sm-12 padding-right">
+					
+					
+					
+					
+					{%include 'shit/New_Items.html'%}
+
+					
+					{%include 'shit/omde.html'%}
+
+
+
+					{%include 'shit/CategoryTab.html'%}
+					
+					
+					
+					
+				</div>
+				
+			</div>			
+		</div>
+	</section>
+	
+{%include 'shit/footer.html' with g=gooz%}
+	
+
+  
+{%include 'shit/footer-scripts.html'%}
+</body>
+</html>
+
