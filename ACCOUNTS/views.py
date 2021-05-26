@@ -7,7 +7,6 @@ from django.contrib.auth import (
     logout, 
     get_user_model,
 )
-from django.contrib.auth.models import User
 from ACCOUNTS.forms import (
     LoginForm,
     RegisterForm,
@@ -37,7 +36,7 @@ def login_page(request):
 
         #if user is in database
         if myUser is not None:
-            #login user wi8th $logIn builtin$ method
+            #login user with logIn builtin method
             logIn(request, myUser)
             #redirect the admin
             if myUser.id == 1:

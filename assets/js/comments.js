@@ -21,6 +21,9 @@ $(document).ready(function(){
                     console.log(r.likes);
                     const likeSpan = e.childNodes[0].childNodes[0].childNodes[0] ;
                     likeSpan.innerHTML = r.likes
+                    e.childNodes[0].childNodes[0].style = 'color : #22fd22;'
+                    
+                    
                  },
                  
                 error : function(){
