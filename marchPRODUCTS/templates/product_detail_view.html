@@ -107,35 +107,13 @@
 										</b>
 										
 										{% for cat in categories %} 
-											<a href="{{cat.getCatAbsouluteUrl}}"> <span class="mycategories">{{cat}} </span>
+											<a href="{{cat.getCatAbsouluteUrl}}"> <span class="mycategories">{{cat}} </span></a>
 										{%endfor%}
 										
 									</p>
 									{% if product.brand %}<p><b> برنـد : </b> {{product.brand}} </p>{% endif %}
 								</div>
-								<span  class="socials-share share">
-									<ul>
-										<a href="#">
-											<li>
-												<label>بلـه</label>
-												<img src="{% static 'images/product-details/Bale.png' %}"/>
-											</li>
-										</a>
-										<a href="#">
-											<li>
-												<label>سـروش</label>
-												<img src="{% static 'images/product-details/Soroush.png' %}"/>
-											</li>
-										</a>
-										<a href="#">
-											<li>
-												<label>اینستاگرام</label>
-												<img src="{% static 'images/product-details/Instagram.png' %}"/>
-											</li>
-										</a>
-										<li><img src="images/product-details/rating.png" alt="" /></li>
-									</ul>
-								</span>
+								
 								
 							</div><!--/product-information-->
 						</div>

@@ -22,14 +22,9 @@
                     <div class="shop-menu pull-right">
                     
                         <ul class="nav navbar-nav">
-                            <li><a href="#"><i class="fa fa-user"></i> سلام {{request.user}} </a></li>
+                            <li><a><i class="fa fa-user"></i> سلام {{request.user}} </a></li>
                             <li><a href="/logout"><i class="fa fa-sign-out"></i>  خروج</a></li>
-                            <li><a href="#"><i class="fa fa-star"></i> لیست علاقه مندی ها</a></li>
-                            
                             <li><a href="/cart"><i class="fa fa-shopping-cart"></i> سبد خریـد</a></li>
-
-                            
-                            
                         </ul>
                         
                     </div>
@@ -73,29 +68,14 @@
 
                         <li><a {%if request.path == '/'%} class='active' {%endif%} href="/">خـانه</a></li>
 
-                        <li class="dropdown"><a {%if request.path == '/shop/' %} class='active'{%endif%} href="/shop">فروشگـاه<i class="fa fa-angle-down"></i></a>
-                            <ul role="menu" class="sub-menu">
-                                <li><a {%if request.path == '/shop/'%} class='active' {%endif%} href="/shop">محصولات</a></li>
-                                <li><a href="product-details.html">جزئیات محصولات</a></li> 
-                                <li><a href="checkout.html">پرداخت</a></li> 
-                                <li {%if request.path == '/cart'%} class='active' {%endif%}><a href="/cart"> سبـد خریـد </a></li> 
-                            </ul>
-                        </li> 
-                        
-
-
-                        <li class="dropdown"><a href="#">اخبـار<i class="fa fa-angle-down"></i></a>
-                            <ul role="menu" class="sub-menu">
-                                <li><a href="blog.html">آخریـن اخبـار</a></li>
-                                <li><a href="blog-single.html">صفحـه خبـر</a></li>
-                            </ul>
-                        </li> 
-
-
+                        <li class="dropdown"><a {%if request.path == '/shop/' %} class='active'{%endif%} href="/shop">فروشگـاه</a></li> 
                         <li><a {%if request.path == '/about-us'   %} class='active' {%endif%} href="/about-us">درباره مـا</a></li>
                         <li><a {%if request.path == '/contact-us' %} class='active' {%endif%} href="/contact-us">تماس با مـا</a></li>
-                        <li><a href="/login" {%if request.path == '/login'%} class='active'{%endif%} > ورود</a></li>
-                        <li><a href="/register" {%if request.path == '/register'%} class='active'{%endif%} > ثبت نام</a></li>
+
+                        {%if not request.user.is_authenticated%}
+                            <li><a href="/login" {%if request.path == '/login'%} class='active'{%endif%} > ورود</a></li>
+                            <li><a href="/register" {%if request.path == '/register'%} class='active'{%endif%} > ثبت نام</a></li>
+                        {% endif %}
                             
                     </ul>
                 </div>
