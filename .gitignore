@@ -2,3 +2,7 @@ __pycache__/
 .vscode/
 settings.json
 *.pyc
+__pycache__
+.vscode
+
+
